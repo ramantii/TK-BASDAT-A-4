@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manajemen Pertandingan</title>
+  <style>
+    .next-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #428bca;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pertandingan</h1>
+
+  {% if daftar_pertandingan %}
+    <h2>Pertandingan Grup Stage</h2>
+    <!-- Tampilkan daftar pertandingan grup stage -->
+    <h2>LIST PERTANDINGAN GRUP STAGE</h2>
+    <table>
+      <tr>
+        <th>Grup</th>
+        <th>Tim</th>
+        <th>Waktu</th>
+        <th>Pemenang</th>
+        <th>Action</th>
+      </tr>
+      {% for pertandingan in daftar_pertandingan %}
+        <tr>
+          <td>{{ pertandingan.grup }}</td>
+          <td>{{ pertandingan.tim }}</td>
+          <td>{{ pertandingan.waktu }}</td>
+          <td>{{ pertandingan.pemenang }}</td>
+          <td>
+            {% if sisa_waktu > 600 %}
+                <p>Belum Waktunya</p>
+            {% elif sisa_waktu <= 600 and sisa_waktu > 0 %}
+                <a href="/mulai_pertandingan/{{ pertandingan.id }}" class="action-link">Lanjutkan</a>
+            {% else %}
+                <a href="/mulai_pertandingan/{{ pertandingan.id }}"class="action-link">Selesaikan</a>
+            {% endif %}
+
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <!-- Tambahkan tombol untuk memulai pertandingan -->
+    <form action="/memulai_pertandingan" method="post">
+      <input type="submit" value="Memulai Pertandingan">
+    </form>
+  {% else %}
+    <h2>Pertandingan Belum Lengkap!</h2>
+    <p>Klik tombol Next untuk membuat pertandingan</p>
+
+    <!-- Tambahkan tombol Next -->
+    <a href="/pembuatan_pertandingan" class="next-button">Next</a>
+  {% endif %}
+</body>
+</html>
