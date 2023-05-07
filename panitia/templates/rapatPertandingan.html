@@ -48,50 +48,14 @@
         <li><a href="#">Manage Pertandingan</a></li>
         <li><a href="#">Logout</a></li>
       </ul>
-  <h1>Pertandingan</h1>
-
-  {% if 1 != 1 %}
-    <h2>Pertandingan Grup Stage</h2>
-    <!-- Tampilkan daftar pertandingan grup stage -->
-    <h2>LIST PERTANDINGAN GRUP STAGE</h2>
-    <table class="table">
-        <tr>
-            <!-- <th>Grup</th> -->
-            <th>Tim</th>
-            <th>Waktu</th>
-            <th>Pemenang</th>
-            <th>Action</th>
-        </tr>
-        <tr>
-            <td>A vs AA</td>
-            <td>5 Juli 2023, 07.00 - 09.00</td>
-            <!-- <td>-</td> -->
-            <td>A</td>
-            <!-- <td>-</td> -->
-            <td><a href="#">Lihat Peristiwa Tim 1</a><br><a href="#">Lihat Peristiwa Tim 2</a></td>
-            <!-- <td><a href="#">Update</a></td> -->
-        </tr>
-        <tr>
-            <td>AAA vs AAAA</td>
-            <td>5 Juli 2023, 07.00 - 09.00</td>
-            <!-- <td>-</td> -->
-            <td>AAA</td>
-            <!-- <td>-</td> -->
-            <td><a href="#">Lihat Peristiwa Tim 1</a><br><a href="#">Lihat Peristiwa Tim 2</a></td>
-            <!-- <td><a href="#">Update</a></td> -->
-        </tr>
-        
-    </table>
-
-    <button type="button" class="btn btn-primary">Finish</button>
-
-  {% else %}
-    <h1>Pemenang: A</h1>
-    <h2>INI AKHIR MUSIM!</h2>
-    <p>Klik tombol Next untuk membuat pertandingan baru</p>
-
-    <!-- Tambahkan tombol Next -->
-    <a href="/pembuatan_pertandingan" class="next-button">Next</a>
-  {% endif %}
+  <h2>RAPAT PERTANDINGAN A vs B</h2>
+  <form method="post">
+   {% csrf_token %}
+   <div class="m-3">
+    <label for="isi_rapat" class="form-label">Isi Rapat:</label>
+    <textarea id="isi_rapat" name="isi_rapat" class="form-control"></textarea>
+   </div>
+   <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
 </body>
 </html>

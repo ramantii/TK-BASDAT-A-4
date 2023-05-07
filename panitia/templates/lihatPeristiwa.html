@@ -47,51 +47,35 @@
         <li><a href="#">Rapat</a></li>
         <li><a href="#">Manage Pertandingan</a></li>
         <li><a href="#">Logout</a></li>
-      </ul>
-  <h1>Pertandingan</h1>
-
-  {% if 1 != 1 %}
-    <h2>Pertandingan Grup Stage</h2>
-    <!-- Tampilkan daftar pertandingan grup stage -->
-    <h2>LIST PERTANDINGAN GRUP STAGE</h2>
+    </ul>
     <table class="table">
         <tr>
-            <!-- <th>Grup</th> -->
-            <th>Tim</th>
-            <th>Waktu</th>
-            <th>Pemenang</th>
-            <th>Action</th>
+            <th colspan="2">Peristiwa Tim A</th>
         </tr>
         <tr>
-            <td>A vs AA</td>
-            <td>5 Juli 2023, 07.00 - 09.00</td>
-            <!-- <td>-</td> -->
-            <td>A</td>
-            <!-- <td>-</td> -->
-            <td><a href="#">Lihat Peristiwa Tim 1</a><br><a href="#">Lihat Peristiwa Tim 2</a></td>
-            <!-- <td><a href="#">Update</a></td> -->
+            <th>Nama Pemain</th>
+            <th>Peristiwa</th>
         </tr>
         <tr>
-            <td>AAA vs AAAA</td>
-            <td>5 Juli 2023, 07.00 - 09.00</td>
-            <!-- <td>-</td> -->
-            <td>AAA</td>
-            <!-- <td>-</td> -->
-            <td><a href="#">Lihat Peristiwa Tim 1</a><br><a href="#">Lihat Peristiwa Tim 2</a></td>
-            <!-- <td><a href="#">Update</a></td> -->
+            <td>John Doe</td>
+            <td>Gol</td>
         </tr>
-        
+        <tr>
+            <td>John Doe</td>
+            <td>Kartu Kuning</td>
+        </tr>
+        <tr>
+            <td>John Doe</td>
+            <td>Kartu Merah</td>
+        </tr>
+        <tr>
+            <td>None</td>
+            <td>None</td>
+        </tr>
+        <tr>
+            <td>None</td>
+            <td>None</td>
+        </tr>
     </table>
-
-    <button type="button" class="btn btn-primary">Finish</button>
-
-  {% else %}
-    <h1>Pemenang: A</h1>
-    <h2>INI AKHIR MUSIM!</h2>
-    <p>Klik tombol Next untuk membuat pertandingan baru</p>
-
-    <!-- Tambahkan tombol Next -->
-    <a href="/pembuatan_pertandingan" class="next-button">Next</a>
-  {% endif %}
 </body>
 </html>

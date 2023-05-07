@@ -48,50 +48,35 @@
         <li><a href="#">Manage Pertandingan</a></li>
         <li><a href="#">Logout</a></li>
       </ul>
-  <h1>Pertandingan</h1>
+    <h1>BUAT PERTANDINGAN</h1>
 
-  {% if 1 != 1 %}
-    <h2>Pertandingan Grup Stage</h2>
-    <!-- Tampilkan daftar pertandingan grup stage -->
-    <h2>LIST PERTANDINGAN GRUP STAGE</h2>
-    <table class="table">
-        <tr>
-            <!-- <th>Grup</th> -->
-            <th>Tim</th>
-            <th>Waktu</th>
-            <th>Pemenang</th>
-            <th>Action</th>
-        </tr>
-        <tr>
-            <td>A vs AA</td>
-            <td>5 Juli 2023, 07.00 - 09.00</td>
-            <!-- <td>-</td> -->
-            <td>A</td>
-            <!-- <td>-</td> -->
-            <td><a href="#">Lihat Peristiwa Tim 1</a><br><a href="#">Lihat Peristiwa Tim 2</a></td>
-            <!-- <td><a href="#">Update</a></td> -->
-        </tr>
-        <tr>
-            <td>AAA vs AAAA</td>
-            <td>5 Juli 2023, 07.00 - 09.00</td>
-            <!-- <td>-</td> -->
-            <td>AAA</td>
-            <!-- <td>-</td> -->
-            <td><a href="#">Lihat Peristiwa Tim 1</a><br><a href="#">Lihat Peristiwa Tim 2</a></td>
-            <!-- <td><a href="#">Update</a></td> -->
-        </tr>
-        
-    </table>
-
-    <button type="button" class="btn btn-primary">Finish</button>
-
-  {% else %}
-    <h1>Pemenang: A</h1>
-    <h2>INI AKHIR MUSIM!</h2>
-    <p>Klik tombol Next untuk membuat pertandingan baru</p>
-
-    <!-- Tambahkan tombol Next -->
-    <a href="/pembuatan_pertandingan" class="next-button">Next</a>
-  {% endif %}
+    <form action="" method="post">
+        <label class="form-label" for="wasitUtama">Pilih Wasit Utama:</label>
+        <select name="wasitUtama" id="wasitUtama" class="form-select">
+            <option value="wasit1">Wasit 1</option>
+        </select>
+        <label class="form-label" for="wasitPembantu1">Pilih Wasit Pembantu/Hakim Garis:</label>
+        <select class="form-select" name="wasitPembantu1" id="wasitPembantu1">
+            <option value="wasit2">Wasit 2</option>
+            <option value="wasit3">Wasit 3</option>
+        </select>
+        <label class="form-label" for="wasitPembantu2">Pilih Wasit Pembantu/Hakim Garis:</label>
+        <select class="form-select" name="wasitPembantu2" id="wasitPembantu2">
+            <option value="wasit3">Wasit 3</option>
+        </select>
+        <label class="form-label" for="wasitCadangan">Pilih Wasit Cadangan:</label>
+        <select class="form-select" name="wasitCadangan" id="wasitCadangan">
+            <option value="wasit1">Wasit 4</option>
+        </select>
+        <label class="form-label" for="tim1">Tim 1:</label>
+        <select class="form-select" name="tim1" id="tim1">
+            <option value="wasit1">A</option>
+        </select>
+        <label class="form-label" for="tim2">Tim 2:</label>
+        <select class="form-select" name="tim2" id="tim2">
+            <option value="wasit1">B</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </body>
 </html>
