@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block meta %}
+  <title>TK BASDAT A 4 | Register</title>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column align-items-center justify-content-center">
+  <div class="container">
+    <div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="text-center mb-5 text-dark">
+          <h2 class="text-center text-dark mt-5">TK BASDAT A 4</h2>
+        </div>
+        <div class="card my-5">
+          <div class="card-body cardbody-color p-lg-5">
+            <div class="text-center">
+            <img src={% static 'image/logo.png' %} class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                width="200px" alt="profile">
+            </div>
+            <div class="mb-3">
+              <form method="post" class="d-flex flex-column" style="gap:24px;">
+                {% csrf_token %}
+                <div class="d-flex flex-column" style="gap: 4px;">
+                  <p>Pilih role yang ingin didaftarkan: </p>
+                  <select id="select-role" class="form-select" onChange="checkRole()">
+                    <option>Pilih role</option>
+                    <option value="admin">Admin</option>
+                    <option value="pemain">Pemain</option>
+                  </select>
+                </div>
+                {% include 'register/register_admin.html' %}
+                {% include 'register/register_pemain.html' %}
+                {% if error %}
+                    <p class="text-danger">{{ error }}</p>
+                {% endif %}
+                <button id="submit-button" type="submit" disabled class="btn btn-primary">Daftar</button>
+              </form>
+            </div>
+            <div id="emailHelp" class="form-text text-center mb-5 text-dark">Sudah punya akun?
+              <a href="/authentication/login/" class="text-dark fw-bold">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    function checkRole() {
+        if ($("#select-role").val() === "pemain") {
+            $("#form-pemain").css("display", "flex");
+            $("#form-admin").css("display", "none");
+        } else if ($("#select-role").val() === "admin") {
+            $("#form-admin").css("display", "flex");
+            $("#form-pemain").css("display", "none");
+        } else {
+            $("#form-admin").css("display", "none");
+            $("#form-pemain").css("display", "none");
+            $("#submit-button").attr("disabled", true)
+        }
+    }
+
+    $( document ).ready(function() {
+        checkRole();
+    });
+
+    function disableSubmitButton() {
+        $("#submit-button").attr("disabled", true);
+        $("#submit-button").css("cursor", "not-allowed");
+    }
+
+    function enableSubmitButton() {
+        $("#submit-button").attr("disabled", false);
+        $("#submit-button").css("cursor", "pointer");
+    }
+
+    function checkValid() {
+        if ($("#select-role").val() === "admin") {
+            if ($("#username-admin").val() && $("#password-admin").val()) {
+                enableSubmitButton();
+            } else {
+                disableSubmitButton();
+            }
+        } else if ($("#select-role").val() === "pemain") {
+            if ($("#username").val() && $("#password").val() && $("#email").val() && $("#no_hp").val()) {
+                enableSubmitButton();
+            } else {
+                disableSubmitButton();
+            }
+        }
+    }
+</script>
+{% endblock %}
