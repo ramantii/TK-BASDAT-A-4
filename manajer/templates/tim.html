@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Information</title>
+  <!-- Load Tailwind CSS from CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto my-8">
+    <h1 class="text-2xl font-bold mb-4 text-center">Team Information</h1>
+    <h2 class="text-xl font-bold mt-8 mb-4 text-center">Pemain</h2>
+    <table class="table-auto mx-auto w-full">
+      <thead>
+        <tr tr class="bg-gray-200">
+          <th class="px-4 py-2">Name</th>
+          <th class="px-4 py-2">No HP</th>
+          <th class="px-4 py-2">Tanggal Lahir</th>
+          <th class="px-4 py-2">Is Captain</th>
+          <th class="px-4 py-2">Posisi</th>
+          <th class="px-4 py-2">NPM</th>
+          <th class="px-4 py-2">Jenjang</th>
+          <th class="px-4 py-2">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border px-4 py-2">Jane Doe</td>
+          <td class="border px-4 py-2">081234567890</td>
+          <td class="border px-4 py-2">01-01-2000</td>
+          <td class="border px-4 py-2">No</td>
+          <td class="border px-4 py-2">Forward</td>
+          <td class="border px-4 py-2">12345678</td>
+          <td class="border px-4 py-2">S1</td>
+          <td class="border px-4 py-2">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">Make Captain</button>
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-xl font-bold mt-8 mb-4 text-center">Pelatih</h2>
+
+    <table class="table-auto mx-auto mb-8 w-full">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="px-4 py-2">Nama Pelatih</th>
+          <th class="px-4 py-2">No HP</th>
+          <th class="px-4 py-2">Email</th>
+          <th class="px-4 py-2">Alamat</th>
+          <th class="px-4 py-2">Spesialisasi</th>
+          <th class="px-4 py-2">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <td class="border px-4 py-2">John Doe</td>
+          <td class="border px-4 py-2">081234567890</td>
+          <td class="border px-4 py-2">john.doe@example.com</td>
+          <td class="border px-4 py-2">Jl. Sudirman No.123</td>
+          <td class="border px-4 py-2">Taktik</td>
+          <td class="border px-4 py-2">
+            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flex justify-center space-x-4">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center">
+            <svg class="w-4 h-4 fill-current mr-2" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 9V5a1 1 0 012 0v4h4a1 1 0 010 2h-4v4a1 1 0 11-2 0v-4H5a1 1 0 110-2h4z"></path>
+              </svg>
+            <span>Pemain</span>
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center">
+            <svg class="w-4 h-4 fill-current mr-2" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 9V5a1 1 0 012 0v4h4a1 1 0 010 2h-4v4a1 1 0 11-2 0v-4H5a1 1 0 110-2h4z"></path>
+              </svg>
+            <span>Pelatih</span>
+
+        
+              
+          </button>
+          
+          
+    </div>
+      
+    
+  </div>
+</body>
+</html>

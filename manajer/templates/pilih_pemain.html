@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Daftar Pelatih</title>
+    <!-- Load Tailwind CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.15/dist/tailwind.min.css">
+  </head>
+  <body class="bg-gray-100 flex flex-col justify-center items-center h-screen">
+    <div class="flex justify-center items-center min-h-screen">
+      <form class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-xl font-bold mb-4">Daftar Pelatih</h2>
+        <div class="mb-4">
+          <select id="player" name="player" class="block w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
+            <option value="player1">Guardiola - Taktik</option>
+            <option value="player2">Virgil - Defender</option>
+            <option value="player3">Havertz - Midfielder</option>
+            <option value="player4">Lewandowski - Forward</option>
+          </select>
+        </div>
+        <button type="submit" class="bg-blue-500 items-center hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+          Submit
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
