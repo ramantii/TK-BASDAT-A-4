@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Daftar Pelatih</title>
+    <!-- Load Tailwind CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.15/dist/tailwind.min.css">
+  </head>
+  <body class="bg-gray-100">
+    <section class="relative mx-auto">
+      <nav class="flex justify-between mt-0 bg-gray-900 text-white w-screen">
+        <div class="px-5 xl:px-12 py-6 flex w-full items-center">
+          <a class="text-3xl font-bold font-heading" href="#">
+            BABADU - A4
+          </a>
+          <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
+            <li><a class="hover:text-gray-200" href="/manajer">Dashboard</a></li>
+            <li><a class="hover:text-gray-200" href="/manajer/tim">Tim</a></li>
+            <li><a class="hover:text-gray-200" href="#">Peminjaman Stadium</a></li>
+            <li><a class="hover:text-gray-200" href="#">Pertandingan</a></li>
+            <li><a class="hover:text-gray-200" href="#">Rapat</a></li>
+          </ul>
+          <div class="xl:flex items-center space-x-5 items-center">
+            <a class="flex items-center hover:text-gray-200" href="/logout">
+                Log out
+            </a>
+            
+          </div>
+        </div>
+
+      </nav>
+      
+    </section>
+    {% if message %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <span class="block sm:inline">{{ message }}</span>
+    </div>
+    {% endif %}
+    <div class="flex justify-center items-center min-h-screen">
+      <form method="POST" action = "/manajer/tim/add_pelatih/" class="bg-white p-6 rounded-lg shadow-lg">
+        {% csrf_token %}
+        <h2 class="text-xl font-bold mb-4">Daftar Pelatih</h2>
+        <div class="mb-4">
+          <select id="id" name="id" class="block w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
+
+            {% for pelatih in list_pelatih %}
+            <option value="{{ pelatih.id_pelatih }}">{{ pelatih.nama_depan }} {{pelatih.nama_belakang}} - {{pelatih.sp}}</option> 
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="bg-blue-500 items-center hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+          Submit
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

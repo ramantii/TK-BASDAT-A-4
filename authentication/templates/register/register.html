@@ -4,6 +4,7 @@
 
 {% block meta %}
   <title>TK BASDAT A 4 | Register</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 {% endblock %}
 
 {% block content %}
@@ -25,22 +26,31 @@
                 {% csrf_token %}
                 <div class="d-flex flex-column" style="gap: 4px;">
                   <p>Pilih role yang ingin didaftarkan: </p>
-                  <select id="select-role" class="form-select" onChange="checkRole()">
-                    <option>Pilih role</option>
-                    <option value="admin">Admin</option>
-                    <option value="pemain">Pemain</option>
-                  </select>
+                  <div class="container text-center">
+                    <div class="row align-items-start">
+                      <div class="col">
+                        <a href="/register/manajer/" class="btn btn-primary btn-block mb-3">Manajer</a>
+                      </div>
+                      <div class="col">
+                        <a href="/register/penonton/" class="btn btn-primary btn-block mb-3">Penonton</a>
+                      </div>
+                      <div class="col">
+                        <a href="/register/panitia/" class="btn btn-primary btn-block mb-3">Panitia</a>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
-                {% include 'register/register_admin.html' %}
-                {% include 'register/register_pemain.html' %}
                 {% if error %}
                     <p class="text-danger">{{ error }}</p>
                 {% endif %}
+                <!--
                 <button id="submit-button" type="submit" disabled class="btn btn-primary">Daftar</button>
+                -->
               </form>
             </div>
             <div id="emailHelp" class="form-text text-center mb-5 text-dark">Sudah punya akun?
-              <a href="/authentication/login/" class="text-dark fw-bold">Login</a>
+              <a href="/login/" class="text-dark fw-bold">Login</a>
             </div>
           </div>
         </div>
