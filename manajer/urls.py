@@ -17,4 +17,6 @@ urlpatterns = [
     path('tim/add_pemain/', views.add_pemain, name = 'add_pemain'),
     # path to add pelatih
     path('tim/add_pelatih/', views.add_pelatih, name = 'add_pelatih'),
+    # path to create tim
+    path('tim/create/', views.create_tim, name = 'create_tim'),
 ]

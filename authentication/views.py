@@ -18,22 +18,30 @@ from utils.fetchall import fetch_all_query
 
 # show landing_page.html
 def landing_page(request):
+    if (request.session.get('username') != None):
+        return redirect(f'''/{request.session.get('role')}/''')
     context = {}
     return render(request, 'landing_page.html', context)
 
 # show register_manajer.html
 def show_register_manajer(request):
+    if (request.session.get('username') != None):
+        return redirect(f'''/{request.session.get('role')}/''')
     context = {'role': 'manajer' }
     
     return render(request, 'register/register_manajer_penonton.html', context)
 
 # show register_panitia.html
 def show_register_panitia(request):
+    if (request.session.get('username') != None):
+        return redirect(f'''/{request.session.get('role')}/''')
     context = {'role': 'panitia' }
     return render(request, 'register/register_panitia.html', context)
 
 # show register_penonton.html
 def show_register_penonton(request):
+    if (request.session.get('username') != None):
+        return redirect(f'''/{request.session.get('role')}/''')
     context = {'role': 'penonton'}
     return render(request, 'register/register_manajer_penonton.html', context)
 
@@ -67,6 +75,8 @@ def login(request):
     return render(request, 'login/login.html', context)
 
 def register(request):
+    if (request.session.get('username') != None):
+        return redirect(f'''/{request.session.get('role')}/''')
     context = {}
     # register_form = forms.LoginForm()
     # context['form'] =  register_form
@@ -78,6 +88,8 @@ def logout(request):
     return redirect('/')
 
 def register_submit(request):
+    if (request.session.get('username') != None):
+        return redirect(f'''/{request.session.get('role')}/''')
     id = uuid.uuid4()
     username = request.POST.get("username")
     password = request.POST.get("password")
