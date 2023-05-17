@@ -14,44 +14,61 @@ def dashboard(request):
         return redirect(f'/{request.session.get("role")}')
 
     id = query(f''' SELECT id_manajer FROM MANAJER WHERE username = '{request.session.get("username")}' ''')[0]['id_manajer']
-    non_pemain = query(f''' SELECT * FROM NON_PEMAIN WHERE id = '{id}' ''')[0]
+    non_pemain = query(f''' 
+        SELECT nama_depan, nama_belakang, nomor_hp, email, alamat, string_agg(status, ', ') as status
+        FROM NON_PEMAIN np join status_non_pemain snp 
+        on np.id = snp.id_non_pemain 
+        WHERE id = '{id}'
+        GROUP BY nama_depan, nama_belakang, nomor_hp, email, alamat;
+        ''')[0]
     # query select from status_non_pemain
-    get_status = query(f''' SELECT * FROM STATUS_NON_PEMAIN WHERE id_non_pemain = '{id}' ''')
-    status = []
-    for element in get_status:
-        status.append(element['status'])
-        context = {
+
+    context = {
         'nama_depan': non_pemain["nama_depan"],
         'nama_belakang': non_pemain["nama_belakang"],
         'no_hp': non_pemain["nomor_hp"],
         'email': non_pemain["email"],
         'alamat': non_pemain["alamat"],
-        'status': status,
+        'status': non_pemain["status"],
         }
+    
     nama_tim = query(f''' SELECT nama_tim FROM TIM_MANAJER WHERE id_manajer = '{id}' ''')
+
     if len(nama_tim) != 0:
         tim = nama_tim[0]['nama_tim']
         universitas = query(f''' SELECT universitas FROM TIM WHERE nama_tim = '{tim}' ''')[0]['universitas']
         context['tim'] = tim
         request.session['nama_tim'] = tim
         context['universitas'] = universitas
+        context['list_pemain'] = get_pemain(tim)
+        context['list_pelatih'] = get_pelatih(tim)
+    else:
+        context['message'] = 'Anda belum membuat tim'	
+
     return render(request, 'dashboard.html', context)
 
 def show_tim(request):
     if (request.session.get('username') == None):
         return redirect('/login/')
     nama_tim = request.session.get('nama_tim')
-    print(nama_tim)
+    # print(nama_tim)
     if nama_tim == None:
         return render(request, 'form_pendaftaran_tim.html')
-    pemain = query(f'''
+
+    context = {'list_pemain': get_pemain(nama_tim),
+                'list_pelatih' : get_pelatih(nama_tim)}
+    return render(request, 'tim.html', context)
+
+def get_pemain(nama_tim):
+    response = query(f'''
         SELECT * FROM PEMAIN 
         WHERE nama_tim = '{nama_tim}' 
         ORDER BY is_captain DESC
         ''')
-    context = {'list_pemain': pemain
-               }
-    pelatih = query(f'''
+    return response
+
+def get_pelatih(nama_tim):
+    response = query(f'''
         SELECT id, nama_depan, nama_belakang, nomor_hp,email, alamat, string_agg(spesialisasi, ', ') as spesialisasi
         FROM NON_PEMAIN NP INNER JOIN SPESIALISASI_PELATIH SP on NP.id = SP.id_pelatih
         WHERE NP.id in (
@@ -60,10 +77,7 @@ def show_tim(request):
         )
         GROUP BY id, nama_depan, nama_belakang, nomor_hp,email, alamat
         ''')
-    
-    context['list_pelatih'] = pelatih
-    return render(request, 'tim.html', context)
-
+    return response
 
 def make_captain(request):
     if (request.session.get('username') == None):
@@ -125,7 +139,7 @@ def add_pelatih(request):
 
     context = {'list_pelatih': list_pelatih}
     if (request.method == 'POST'):
-        print(request.POST.get('id'))
+     #   print(request.POST.get('id'))
         response = query(f''' UPDATE PELATIH SET nama_tim = '{request.session.get('nama_tim')}' WHERE id_pelatih = '{request.POST.get('id')}' ''')
         if (isinstance(response, Exception)):
             context['message'] = response.args[0].split("\n")[0]

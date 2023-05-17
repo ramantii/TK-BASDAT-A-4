@@ -33,54 +33,128 @@
       </nav>
       
     </section>
-  </div>
-  <div class="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
-    <h1 class="text-3xl font-semibold mb-6 text-center">Dashboard</h1>
-    <div class="grid grid-cols-2 gap-6 mb-8">
-      <div class="flex flex-col">
-        <span class="text-gray-500 font-medium mb-1">Nama Depan</span>
-        <span class="text-gray-900 font-semibold">{{nama_depan}}</span>
-      </div>
-      <div class="flex flex-col">
-        <span class="text-gray-500 font-medium mb-1">Nama Belakang</span>
-        <span class="text-gray-900 font-semibold">{{nama_belakang}}</span>
-      </div>
-      <div class="flex flex-col">
-        <span class="text-gray-500 font-medium mb-1">Nomor HP</span>
-        <span class="text-gray-900 font-semibold">{{no_hp}}</span>
-      </div>
-      <div class="flex flex-col">
-        <span class="text-gray-500 font-medium mb-1">Email</span>
-        <span class="text-gray-900 font-semibold">{{email}}</span>
-      </div>
-      <div class="flex flex-col">
-        <span class="text-gray-500 font-medium mb-1">Alamat</span>
-        <span class="text-gray-900 font-semibold">{{alamat}}</span>
-      </div>
-      <div class="flex flex-col">
-        <span class="text-gray-500 font-medium mb-1">Status</span>
+  
 
-        <span class="text-gray-900 font-semibold">
-          {% for status in status %}
-          {{status}}{% if not forloop.last %}, {% endif %}
-          {% endfor %}
-        </span>
+  <div class="bg-white rounded-lg shadow-md p-8 w-full container mx-auto my-8">
+    
+    <div class="flex justify-center items-center">
+      <div class="flex p-4">
+        <div class="container">
+          <h1 class="text-3xl font-bold mb-6 text-center">Dashboard</h1>
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Nama Depan</span>
+              <span class="text-gray-900 font-semibold">{{nama_depan}}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Nama Belakang</span>
+              <span class="text-gray-900 font-semibold">{{nama_belakang}}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Nomor HP</span>
+              <span class="text-gray-900 font-semibold">{{no_hp}}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Email</span>
+              <span class="text-gray-900 font-semibold">{{email}}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Alamat</span>
+              <span class="text-gray-900 font-semibold">{{alamat}}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Status</span>
+      
+              <span class="text-gray-900 font-semibold">
+                {{ status}}
+              </span>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <h1 class="text-2xl font-semibold mb-4 text-center">Tim</h1>
+    {% if list_pemain %}
+    <h2 class="text-xl font-semibold mt-8 mb-4 text-center">{{tim}} - {{universitas}}</h2>
+    <h2 class="text-xl font-semibold mt-8 mb-4 text-center">Pemain</h2>
+    <table class="table-auto mx-auto w-full">
+      <thead>
+        <tr tr class="bg-gray-200">
+          <th class="px-4 py-2">Name</th>
+          <th class="px-4 py-2">No HP</th>
+          <th class="px-4 py-2">Tanggal Lahir</th>
+          <th class="px-4 py-2">Is Captain</th>
+          <th class="px-4 py-2">Posisi</th>
+          <th class="px-4 py-2">NPM</th>
+          <th class="px-4 py-2">Jenjang</th>
         
-      </div>
-    </div>
-    <div class="border-t pt-6">
-      <h2 class="text-2xl font-semibold mb-6 text-center">Tim</h2>
-      <div class="flex flex-col items-center justify-center">
-        <p class="text-gray-500 font-medium mb-1">
-          {% if tim %}
-          {{tim}} - {{universitas}}
-          {% else %}
-          Belum Membuat Tim
-          {% endif %}
-        </p>
-      </div>
-    </div>
+        </tr>
+      </thead>
+      <tbody>
+  
+          {% if list_pemain %}
+          {% for pemain in list_pemain %}
+
+          <tr>
+          <td class="border px-4 py-2">{{ pemain.nama_depan }} {{ pemain.nama_belakang }}</td>
+          <td class="border px-4 py-2">{{ pemain.nomor_hp }}</td>
+          <td class="border px-4 py-2">{{ pemain.tgl_lahir }}</td>
+          <td class="border px-4 py-2">
+            {% if pemain.is_captain %}
+            Yes
+            {% else %}
+            No
+            {% endif %}
+          </td>
+          <td class="border px-4 py-2">{{ pemain.posisi }}</td>
+          <td class="border px-4 py-2">{{ pemain.npm }}</td>
+          <td class="border px-4 py-2">{{ pemain.jenjang }}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="text-center">{{message}}</p>
+    
+    {% endif %}
+
+    {% if list_pelatih %}
+    <h2 class="text-xl font-semibold mt-8 mb-4 text-center">Pelatih</h2>
+    <table class="table-auto mx-auto mb-8 w-full">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="px-4 py-2">Nama Pelatih</th>
+          <th class="px-4 py-2">No HP</th>
+          <th class="px-4 py-2">Email</th>
+          <th class="px-4 py-2">Alamat</th>
+          <th class="px-4 py-2">Spesialisasi</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {% if list_pelatih %}
+        {% for pelatih in list_pelatih %}
+        <tr class="text-center">
+          <td class="border px-4 py-2">{{pelatih.nama_depan}} {{pelatih.nama_belakang}}</td>
+          <td class="border px-4 py-2">{{pelatih.nomor_hp}}</td>
+          <td class="border px-4 py-2">{{pelatih.email}}</td>
+          <td class="border px-4 py-2">{{pelatih.alamat}}</td>
+          <td class="border px-4 py-2">{{pelatih.spesialisasi}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+
+      </tbody>
+    </table>
+    {% else %}
+    <p class="text-center">Anda belum menambahkan pelatih</p>
+    {% endif %}
   </div>
+  
+    
 
 </body>
 
