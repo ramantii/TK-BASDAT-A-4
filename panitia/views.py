@@ -1,6 +1,41 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from utils.query import query
 
 # Create your views here.
+def dashboard(request):
+    if (request.session.get('username') == None):
+        return redirect('/login/')
+    if (request.session.get('role') != 'panitia'):
+        if (request.session.get('role') == None):
+            return redirect('/')
+        return redirect(f'/{request.session.get("role")}')
+    
+    non_pemain = query(f''' 
+        SELECT nama_depan, nama_belakang, nomor_hp, email, alamat, string_agg(status, ', ') as status, jabatan
+        FROM NON_PEMAIN np join status_non_pemain snp 
+        on np.id = snp.id_non_pemain 
+        join panitia p on p.id_panitia = np.id
+        WHERE username = '{request.session.get("username")}'
+        GROUP BY nama_depan, nama_belakang, nomor_hp, email, alamat, jabatan;
+        ''')
+    list_rapat = query(f'''
+        SELECT r.id_pertandingan, r.datetime, np1.nama_depan AS p_fname,
+        np1.nama_belakang AS p_lname,
+        np2.nama_depan AS ma_fname, np2.nama_belakang AS ma_lname,
+        np3.nama_depan AS mb_fname, np3.nama_belakang AS mb_lname, r.isi_rapat
+        FROM rapat r
+        INNER JOIN non_pemain np1 ON np1.id = r.perwakilan_panitia
+        INNER JOIN non_pemain np2 ON np2.id = r.manajer_tim_a
+        INNER JOIN non_pemain np3 ON np3.id = r.manajer_tim_b
+        WHERE r.datetime > current_timestamp;
+        ''')
+    context = {
+        "non_pemain": non_pemain,
+        "list_rapat": list_rapat
+        }   
+    
+    return render(request, 'dashboard_panitia.html', context)
+
 def show_manage(request):
     context = {
         "sisa_waktu": 600

@@ -4,7 +4,7 @@ from panitia.views import *
 app_name = 'panitia'
 
 urlpatterns = [
-    # path('', show_panitia, name='panitia'),  
+    path('', dashboard, name='panitia'),  
     path('manage', show_manage, name='manage'),
     path('buat_pertandingan', show_buat_pertandingan, name='buat_pertandingan'),
     path('mulai_pertandingan', show_mulai_pertandingan, name='mulai_pertandingan'),
