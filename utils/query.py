@@ -6,10 +6,10 @@ from psycopg2.extras import RealDictCursor
 try:
 
     connection = psycopg2.connect(user="postgres",
-                        password='sql2133',
-                        host="localhost",
-                        port="5432",
-                        database="postgres")
+                        password='IDsSZXKM5IKcGYh8hHtI',
+                        host='containers-us-west-147.railway.app',
+                        port='7954',
+                        database="railway")
 
     # Create a cursor to perform database operations
     connection.autocommit = True
@@ -29,7 +29,7 @@ def map_cursor(cursor):
 def query(query_str: str):
     hasil = []
     with connection.cursor(cursor_factory=RealDictCursor) as cursor:
-        cursor.execute("SET SEARCH_PATH TO SEPAKBOLA")
+        cursor.execute("SET SEARCH_PATH TO PUBLIC")
         try:
             cursor.execute(query_str)
 
