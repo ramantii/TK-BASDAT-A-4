@@ -84,7 +84,9 @@
     <table class="table-auto mx-auto w-full">
       <thead>
         <tr tr class="bg-gray-200">
-          <th class="px-4 py-2">ID Pertandingan</th>
+          <th class="px-4 py-2">Tim Bertanding</th>
+          <th class="px-4 py-2">Tim A</th>
+          <th class="px-4 py-2">Tim B</th>
           <th class="px-4 py-2">Datetime</th>
           <th class="px-4 py-2">Perwakilan Panitia</th>
           <th class="px-4 py-2">Manajer Tim A</th>
@@ -99,7 +101,9 @@
           {% for rapat in list_rapat %}
 
           <tr>
-          <td class="border px-4 py-2">{{ rapat.id_pertandingan }}</td>
+          <td class="border px-4 py-2">{{ rapat.tim_a }} vs {{ rapat.tim_b }}</td>
+          <td class="border px-4 py-2">{{ rapat.tim_a }}</td>
+          <td class="border px-4 py-2">{{ rapat.tim_b }}</td>
           <td class="border px-4 py-2">{{ rapat.datetime }}</td>
           <td class="border px-4 py-2">{{ rapat.p_fname }} {{ rapat.p_lname }}</td>
           <td class="border px-4 py-2">
