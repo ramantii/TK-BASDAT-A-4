@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('authentication.urls')),
     path('manajer/', include('manajer.urls')),
     path('panitia/', include('panitia.urls')),
+    path('penonton/', include('penonton.urls')),
 
 ]
