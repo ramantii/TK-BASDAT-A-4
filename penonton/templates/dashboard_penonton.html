@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="flex flex-col items-center justify-center min-h-full bg-gray-100">
+    <section class="relative mx-auto">
+      <nav class="flex justify-between mt-0 bg-gray-900 text-white w-screen">
+        <div class="px-5 xl:px-12 py-6 flex w-full items-center">
+          <a class="text-3xl font-bold font-heading" href="#">
+            BABADU - A4
+          </a>
+          <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
+            <li><a class="hover:text-gray-200" href="/penonton">Dashboard</a></li>
+            <li><a class="hover:text-gray-200" href="#">Pembelian Tiket</a></li>
+            <li><a class="hover:text-gray-200" href="#">List Pertandingan</a></li>
+          </ul>
+          <div class="xl:flex items-center space-x-5 items-center">
+            <a class="flex items-center hover:text-gray-200" href="/logout">
+                Log out
+            </a>
+            
+          </div>
+        </div>
+
+      </nav>
+      
+    </section>
+  
+
+  <div class="bg-white rounded-lg shadow-md p-8 w-full container mx-auto my-8">
+    
+    <div class="flex justify-center items-center">
+      <div class="flex p-4">
+        <div class="container">
+          <h1 class="text-3xl font-bold mb-6 text-center">Dashboard</h1>
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            {% for element in non_pemain %}
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Nama Depan</span>
+              <span class="text-gray-900 font-semibold">{{element.nama_depan}}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Nama Belakang</span>
+              <span class="text-gray-900 font-semibold">{{element.nama_belakang}}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Nomor HP</span>
+              <span class="text-gray-900 font-semibold">{{element.nomor_hp}}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Email</span>
+              <span class="text-gray-900 font-semibold">{{element.email}}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Alamat</span>
+              <span class="text-gray-900 font-semibold">{{element.alamat}}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 font-medium mb-1">Status</span>
+              <span class="text-gray-900 font-semibold">
+                {{element.status}}
+              </span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <h1 class="text-2xl font-semibold mb-4 text-center">Pemesanan Tiket</h1>
+    {% if list_pemesanan_tiket %}
+    <table class="table-auto mx-auto w-full">
+      <thead>
+        <tr tr class="bg-gray-200">
+          <th class="px-4 py-2">ID Pertandingan</th>
+          <th class="px-4 py-2">Tim Bertanding</th>
+          <th class="px-4 py-2">Jenis Tiket</th>
+          <th class="px-4 py-2">Start Datetime</th>
+          <th class="px-4 py-2">End Datetime</th>
+          <th class="px-4 py-2">Nama Stadium</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+  
+          {% if list_pemesanan_tiket %}
+          {% for tiket in list_pemesanan_tiket %}
+
+          <tr>
+          <td class="border px-4 py-2">{{ tiket.id_pertandingan }}</td>
+          <td class="border px-4 py-2">{{ tiket.nama_tim }}</td>
+          <td class="border px-4 py-2">{{ tiket.jenis_tiket }}</td>
+          <td class="border px-4 py-2">{{ tiket.start_datetime }}</td>
+          <td class="border px-4 py-2">{{ tiket.end_datetime }}</td>
+          <td class="border px-4 py-2">{{ tiket.nama_stadium}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="text-center"> Anda belum memesan tiket</p>
+    
+    {% endif %}
+
+  </div>
+  
+    
+
+</body>
+
+</html>
