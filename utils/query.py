@@ -30,7 +30,7 @@ def map_cursor(cursor):
 def query(query_str: str):
     hasil = []
     with connection.cursor(cursor_factory=RealDictCursor) as cursor:
-        cursor.execute("SET SEARCH_PATH TO SEPAKBOLA")
+        cursor.execute("SET SEARCH_PATH TO PUBLIC")
         try:
             cursor.execute(query_str)
 

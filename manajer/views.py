@@ -50,6 +50,11 @@ def dashboard(request):
 def show_tim(request):
     if (request.session.get('username') == None):
         return redirect('/login/')
+    
+    if (request.session.get('role') != 'manajer'):
+        if (request.session.get('role') == None):
+            return redirect('/')
+        return redirect(f'/{request.session.get("role")}')
     nama_tim = request.session.get('nama_tim')
     # print(nama_tim)
     if nama_tim == None:
@@ -82,6 +87,10 @@ def get_pelatih(nama_tim):
 def make_captain(request):
     if (request.session.get('username') == None):
         return redirect('/login/')
+    if (request.session.get('role') != 'manajer'):
+        if (request.session.get('role') == None):
+            return redirect('/')
+        return redirect(f'/{request.session.get("role")}')
     if (request.session.get('nama_tim') == None):
         return redirect('/manajer/tim/')
     id_pemain = request.POST.get('id')
@@ -92,6 +101,10 @@ def make_captain(request):
 def delete_pemain(request):
     if (request.session.get('username') == None):
         return redirect('/login/')
+    if (request.session.get('role') != 'manajer'):
+        if (request.session.get('role') == None):
+            return redirect('/')
+        return redirect(f'/{request.session.get("role")}')
     if (request.session.get('nama_tim') == None):
         return redirect('/manajer/tim/')
     id_pemain = request.POST.get('id')
@@ -102,6 +115,10 @@ def delete_pemain(request):
 def delete_pelatih(request):
     if (request.session.get('username') == None):
         return redirect('/login/')
+    if (request.session.get('role') != 'manajer'):
+        if (request.session.get('role') == None):
+            return redirect('/')
+        return redirect(f'/{request.session.get("role")}')
     if (request.session.get('nama_tim') == None):
         return redirect('/manajer/tim/')
     id_pelatih = request.POST.get('id')
@@ -113,6 +130,10 @@ def delete_pelatih(request):
 def add_pemain(request):
     if (request.session.get('username') == None):
         return redirect('/login/')
+    if (request.session.get('role') != 'manajer'):
+        if (request.session.get('role') == None):
+            return redirect('/')
+        return redirect(f'/{request.session.get("role")}')
     if (request.session.get('nama_tim') == None):
         return redirect('/manajer/tim/')
     list_pemain = query(f''' SELECT * FROM PEMAIN WHERE nama_tim IS NULL ''')
@@ -128,6 +149,10 @@ def add_pemain(request):
 def add_pelatih(request):
     if (request.session.get('username') == None):
         return redirect('/login/')
+    if (request.session.get('role') != 'manajer'):
+        if (request.session.get('role') == None):
+            return redirect('/')
+        return redirect(f'/{request.session.get("role")}')
     if (request.session.get('nama_tim') == None):
         return redirect('/manajer/tim/')
     list_pelatih = query(f''' SELECT p.id_pelatih, nama_depan, nama_belakang, string_agg(spesialisasi, ', ') as sp
@@ -153,6 +178,10 @@ def create_tim(request):
     # if user hasnt logged in
     if (request.session.get('username') == None):
         return redirect('/login/')
+    if (request.session.get('role') != 'manajer'):
+        if (request.session.get('role') == None):
+            return redirect('/')
+        return redirect(f'/{request.session.get("role")}')
     if (request.session.get('nama_tim') != None):
         return redirect('/manajer/tim/')
     if (request.method == 'POST'):
