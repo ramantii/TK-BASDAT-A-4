@@ -11,6 +11,7 @@ try:
                         port='7954',
                         database="railway")
 
+
     # Create a cursor to perform database operations
     connection.autocommit = True
     cursor = connection.cursor()
