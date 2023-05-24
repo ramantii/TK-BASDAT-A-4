@@ -32,7 +32,9 @@ ALLOWED_HOSTS = ['localhost',
                  '127.0.0.1', 
                  'sepakbola-a-4-production.up.railway.app',
                  ]
-CSRF_TRUSTED_ORIGINS = ["https://sepakbola-a-4-production.up.railway.app/"]
+CSRF_TRUSTED_ORIGINS = [
+    'https://sepakbola-a-4-production.up.railway.app',
+]
 
 # Application definition
 
