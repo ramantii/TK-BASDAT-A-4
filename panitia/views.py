@@ -19,7 +19,7 @@ def dashboard(request):
         GROUP BY nama_depan, nama_belakang, nomor_hp, email, alamat, jabatan;
         ''')
     list_rapat = query(f'''
-SELECT t.nama_tim as tim_a, t2.nama_tim as tim_b,  r.datetime, np1.nama_depan AS p_fname,
+SELECT r.id_pertandingan, t.nama_tim as tim_a, t2.nama_tim as tim_b,  r.datetime, np1.nama_depan AS p_fname,
         np1.nama_belakang AS p_lname,
         np2.nama_depan AS ma_fname, np2.nama_belakang AS ma_lname,
         np3.nama_depan AS mb_fname, np3.nama_belakang AS mb_lname, r.isi_rapat
@@ -29,7 +29,8 @@ SELECT t.nama_tim as tim_a, t2.nama_tim as tim_b,  r.datetime, np1.nama_depan AS
         INNER JOIN non_pemain np3 ON np3.id = r.manajer_tim_b
 		INNER JOIN tim_manajer t on np2.id = t.id_manajer
 		INNER JOIN tim_manajer t2 on np3.id = t2.id_manajer
-        WHERE r.datetime > current_timestamp;
+        WHERE r.datetime > current_timestamp and
+        r.perwakilan_panitia = (SELECT id_panitia FROM panitia WHERE username = '{request.session.get("username")}')
         ''')
     context = {
         "non_pemain": non_pemain,

@@ -16,9 +16,9 @@
             BABADU - A4
           </a>
           <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
-            <li><a class="hover:text-gray-200" href="/panitia">Dashboard</a></li>
-            <li><a class="hover:text-gray-200" href="/panitia/rapat_pertandingan">Rapat</a></li>
-            <li><a class="hover:text-gray-200" href="#">Manage Pertandingan</a></li>
+            <li><a class="hover:text-gray-200" href="/penonton">Dashboard</a></li>
+            <li><a class="hover:text-gray-200" href="#">Pembelian Tiket</a></li>
+            <li><a class="hover:text-gray-200" href="#">List Pertandingan</a></li>
           </ul>
           <div class="xl:flex items-center space-x-5 items-center">
             <a class="flex items-center hover:text-gray-200" href="/logout">
@@ -67,59 +67,45 @@
                 {{element.status}}
               </span>
             </div>
-            <div class="flex flex-col">
-              <span class="text-gray-500 font-medium mb-1">Jabatan</span>
-              <span class="text-gray-900 font-semibold">
-                {{element.jabatan}}
-              </span>
-            </div>
             {% endfor %}
           </div>
         </div>
       </div>
     </div>
     
-    <h1 class="text-2xl font-semibold mb-4 text-center">Rapat</h1>
-    {% if list_rapat %}
+    <h1 class="text-2xl font-semibold mb-4 text-center">Pemesanan Tiket</h1>
+    {% if list_pemesanan_tiket %}
     <table class="table-auto mx-auto w-full">
       <thead>
         <tr tr class="bg-gray-200">
+          <th class="px-4 py-2">ID Pertandingan</th>
           <th class="px-4 py-2">Tim Bertanding</th>
-          <th class="px-4 py-2">Tim A</th>
-          <th class="px-4 py-2">Tim B</th>
-          <th class="px-4 py-2">Datetime</th>
-          <th class="px-4 py-2">Perwakilan Panitia</th>
-          <th class="px-4 py-2">Manajer Tim A</th>
-          <th class="px-4 py-2">Manajer Tim B</th>
-          <th class="px-4 py-2">Isi Rapat</th>
+          <th class="px-4 py-2">Jenis Tiket</th>
+          <th class="px-4 py-2">Start Datetime</th>
+          <th class="px-4 py-2">End Datetime</th>
+          <th class="px-4 py-2">Nama Stadium</th>
         
         </tr>
       </thead>
       <tbody>
   
-          {% if list_rapat %}
-          {% for rapat in list_rapat %}
+          {% if list_pemesanan_tiket %}
+          {% for tiket in list_pemesanan_tiket %}
 
           <tr>
-          <td class="border px-4 py-2">{{ rapat.tim_a }} vs {{ rapat.tim_b }}</td>
-          <td class="border px-4 py-2">{{ rapat.tim_a }}</td>
-          <td class="border px-4 py-2">{{ rapat.tim_b }}</td>
-          <td class="border px-4 py-2">{{ rapat.datetime }}</td>
-          <td class="border px-4 py-2">{{ rapat.p_fname }} {{ rapat.p_lname }}</td>
-          <td class="border px-4 py-2">
-            {{ rapat.ma_fname }} {{ rapat.ma_lname }}
-          </td>
-          <td class="border px-4 py-2">
-            {{ rapat.mb_fname }} {{ rapat.mb_lname }}
-          </td>
-          <td class="border px-4 py-2">{{ rapat.isi_rapat }}</td>
+          <td class="border px-4 py-2">{{ tiket.id_pertandingan }}</td>
+          <td class="border px-4 py-2">{{ tiket.nama_tim }}</td>
+          <td class="border px-4 py-2">{{ tiket.jenis_tiket }}</td>
+          <td class="border px-4 py-2">{{ tiket.start_datetime }}</td>
+          <td class="border px-4 py-2">{{ tiket.end_datetime }}</td>
+          <td class="border px-4 py-2">{{ tiket.nama_stadium}}</td>
         </tr>
         {% endfor %}
         {% endif %}
       </tbody>
     </table>
     {% else %}
-    <p class="text-center">Belum Ada Rapat</p>
+    <p class="text-center"> Anda belum memesan tiket</p>
     
     {% endif %}
 
