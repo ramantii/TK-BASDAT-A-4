@@ -30,7 +30,7 @@ SELECT r.id_pertandingan, t.nama_tim as tim_a, t2.nama_tim as tim_b,  r.datetime
 		INNER JOIN tim_manajer t on np2.id = t.id_manajer
 		INNER JOIN tim_manajer t2 on np3.id = t2.id_manajer
         WHERE r.datetime > current_timestamp and
-        r.perwakilan_panitia = (SELECT id FROM non_pemain WHERE username = '{request.session.get("username")}')
+        r.perwakilan_panitia = (SELECT id_panitia FROM panitia WHERE username = '{request.session.get("username")}')
         ''')
     context = {
         "non_pemain": non_pemain,
