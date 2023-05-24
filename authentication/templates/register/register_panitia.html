@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block content %}
+{% if messages %}
+<div class="alert alert-warning" role="alert">
+  {{ messages }}
+</div>
+{% endif %}
 <div class="container d-flex align-items-center justify-content-center min-vh-100">
     <div class="col-md-6">
       <h1 class="text-center mb-4">Registration 
@@ -21,11 +26,6 @@
 
           <label for="username">Username</label>
           <input type="text" class="form-control" name="username" placeholder="Enter your username" required>
-          {% if messages %}
-          <p>
-            {{ messages }}
-          </p>
-          {% endif %}
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
