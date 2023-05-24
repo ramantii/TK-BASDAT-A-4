@@ -76,8 +76,9 @@
     </div>
     
     <h1 class="text-2xl font-semibold mb-4 text-center">Tim</h1>
-    {% if list_pemain %}
+    {% if tim %}
     <h2 class="text-xl font-semibold mt-8 mb-4 text-center">{{tim}} - {{universitas}}</h2>
+    {% if list_pemain %}
     <h2 class="text-xl font-semibold mt-8 mb-4 text-center">Pemain</h2>
     <table class="table-auto mx-auto w-full">
       <thead>
@@ -94,7 +95,7 @@
       </thead>
       <tbody>
   
-          {% if list_pemain %}
+          
           {% for pemain in list_pemain %}
 
           <tr>
@@ -113,14 +114,12 @@
           <td class="border px-4 py-2">{{ pemain.jenjang }}</td>
         </tr>
         {% endfor %}
-        {% endif %}
+       
       </tbody>
     </table>
     {% else %}
-    <p class="text-center">{{message}}</p>
-    
+    <p class="text-center">Anda belum menambahkan pemain</p>
     {% endif %}
-
     {% if list_pelatih %}
     <h2 class="text-xl font-semibold mt-8 mb-4 text-center">Pelatih</h2>
     <table class="table-auto mx-auto mb-8 w-full">
@@ -152,6 +151,12 @@
     {% else %}
     <p class="text-center">Anda belum menambahkan pelatih</p>
     {% endif %}
+    
+    {% else %}
+    <p class="text-center">{{message}}</p>
+    
+    {% endif %}
+
   </div>
   
     
