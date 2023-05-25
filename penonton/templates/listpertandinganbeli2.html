@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Football Match List</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+  body {
+    background-image: url('gambarlistpertandingan.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  caption {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  thead {
+    background-color: #f2f2f2;
+  }
+  
+  th {
+    font-weight: bold;
+    background-color: white;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tbody tr:hover {
+    background-color: #eaeaea;
+  
+  }
+  tbody{background-color: #eaeaea;}
+  </style>
+</head>
+<body>
+  <table>
+    <caption>List Pertandingan</caption>
+    <thead>
+      <tr>
+        <th>Tim 1</th>
+        <th>Tim 2</th>
+        <th>Pilih</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for list in list_pertandingan %}   
+        <tr>
+         
+        
+        <td>{{list.tim_a}}</td>
+        <td>{{list.tim_b}}</td>
+        <td><a href="/penonton/tiket/beliticket">next</a></td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</body>
+</html>
