@@ -48,12 +48,29 @@
         <li><a href="#">Manage Pertandingan</a></li>
         <li><a href="#">Logout</a></li>
       </ul>
-  <h1>Pertandingan</h1>
+  <h1 style="text-align: center;">Manage Pertandingan</h1>
+  <br><br>
 
   {% if 1 != 1 %}
     <h2>Pertandingan Grup Stage</h2>
     <!-- Tampilkan daftar pertandingan grup stage -->
     <h2>LIST PERTANDINGAN GRUP STAGE</h2>
+    <table style="width:100%">
+        <tr>
+            <th>Tim</th>
+            <th>Waktu</th>
+            <th>Pemenang</th>
+            <th>Action</th>
+        </tr>
+        {% for obj in res %}
+        <tr>
+            <td>{{ obj.username_pengguna }}</td>
+            <td>{{ obj.nama_tokoh }}</td>
+            <td>{{ obj.nama_misi }}</td>
+            <td>{{ obj.status }}</td>
+          </tr>
+      {% endfor %}
+</table>
     <table class="table">
         <tr>
             <!-- <th>Grup</th> -->
@@ -86,12 +103,13 @@
     <button type="button" class="btn btn-primary">Finish</button>
 
   {% else %}
-    <h1>Pemenang: A</h1>
-    <h2>INI AKHIR MUSIM!</h2>
-    <p>Klik tombol Next untuk membuat pertandingan baru</p>
+  <div style="text-align: center;">
+    <h3>PERTANDINGAN BELUM LENGKAP!</h3>
+    <h5>Klik tombol Next untuk membuat pertandingan baru</h5>
 
     <!-- Tambahkan tombol Next -->
-    <a href="/pembuatan_pertandingan" class="next-button">Next</a>
+    <a href="/panitia/pembuatan_pertandingan" class="next-button">Next</a>
+  </div>
   {% endif %}
 </body>
 </html>
