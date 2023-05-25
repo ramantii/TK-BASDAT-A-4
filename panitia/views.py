@@ -3,12 +3,12 @@ from utils.query import query
 
 # Create your views here.
 def dashboard(request):
-    # if (request.session.get('username') == None):
-    #     return redirect('/login/')
-    # if (request.session.get('role') != 'panitia'):
-    #     if (request.session.get('role') == None):
-    #         return redirect('/')
-    #     return redirect(f'/{request.session.get("role")}')
+    if (request.session.get('username') == None):
+        return redirect('/login/')
+    if (request.session.get('role') != 'panitia'):
+        if (request.session.get('role') == None):
+            return redirect('/')
+        return redirect(f'/{request.session.get("role")}')
     
     non_pemain = query(f''' 
         SELECT nama_depan, nama_belakang, nomor_hp, email, alamat, string_agg(status, ', ') as status, jabatan

@@ -15,4 +15,5 @@ urlpatterns = [
     path('list_waktu_stadium', show_list_waktu_stadium, name='list_waktu_stadium'),
     path('rapat_pertandingan', show_rapat_pertandingan, name='rapat_pertandingan'),
     path('buat_peristiwa', show_buat_peristiwa, name='buat_peristiwa'),
+    
 ]
